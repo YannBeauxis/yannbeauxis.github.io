@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tisanes</title>
+  <script
+	    src="https://code.jquery.com/jquery-3.3.1.min.js"
+	    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	    crossorigin="anonymous"></script>
+  <script 
+      src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+      crossorigin="anonymous"></script>
+  <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+      crossorigin="anonymous"></script>
+  <link 
+      rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="scripts/DataTables/datatables.min.css"/>
+  <script 
+    type="text/javascript" 
+    src="scripts/DataTables/datatables.min.js"></script>
+  <script 
+      src="scripts/main.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1> {{ title }} </h1>
+    <table id="plant-list" class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th> Nom commun </th>
+          <th> Nom scientifique </th>
+          <th style="width: 50%"> Indications thérapeutiques </th>
+          <th> Autres indications </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="drug in drugs"
+          v-bind:drug="drug"
+          v-bind:key="drug.id">
+          <td><drug--name-common
+              :drug="drug"/></td>
+          <td><drug--name-sc
+            :drug="drug" /></td>
+          <td>  
+            <drug--indic-thq
+            v-for="indic in drug.ind_mel_tis_ansm"
+            v-bind:indic="indic"
+            v-bind:indics="indics"
+                  :drug="drug"
+            v-bind:key="indic.id"/></td>
+          <td>  
+            <drug--indic-autre
+              :drug="drug"/></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!--
+    <ul>
+      <drug-item 
+        v-for="drug in drugs"
+        v-bind:drug="drug"
+        v-bind:key="drug.id">
+        <ul>
+          <indic-item v-for="indic in drug.ind_mel_tis_ansm"
+              v-bind:indic="indic"
+              v-bind:indics="indics"
+              v-bind:key="indic.id">
+          </indic-item>
+        </ul>
+      </drug-item>
+    </ul>
+-->
+  
+</body>
+
+</html>
