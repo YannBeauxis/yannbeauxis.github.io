@@ -36,55 +36,21 @@
 <body>
   <div id="app">
     <h1> {{ title }} </h1>
-    <table id="plant-list" class="table table-sm table-striped">
-      <thead>
-        <tr>
-          <th> Nom commun </th>
-          <th> Nom scientifique </th>
-          <th style="width: 50%"> Indications thérapeutiques </th>
-          <th> Autres indications </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="drug in drugs"
-          v-bind:drug="drug"
-          v-bind:key="drug.id">
-          <td><drug--name-common
-              :drug="drug"/></td>
-          <td><drug--name-sc
-            :drug="drug" /></td>
-          <td>  
-            <drug--indic-thq
-            v-for="indic in drug.ind_mel_tis_ansm"
-            v-bind:indic="indic"
-            v-bind:indics="indics"
-                  :drug="drug"
-            v-bind:key="indic.id"/></td>
-          <td>  
-            <drug--indic-autre
-              :drug="drug"/></td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="menu">
+        <a href="#" @click="activeNav = 'drug-view'">Vue par plante</a> | 
+        <a href="#" @click="activeNav = 'indic-view'">Vue par indication</a>
+    </div>
+    <drug-view
+      v-if="activeNav === 'drug-view'" 
+      :drugs-list-by-name="drugsListByName"
+      :indics="indics">
+    </drug-view>
+    <indic-view
+      v-if="activeNav === 'indic-view'" 
+      :drugs="drugs"
+      :indics="indics">
+    </indic-view>
   </div>
-
-<!--
-    <ul>
-      <drug-item 
-        v-for="drug in drugs"
-        v-bind:drug="drug"
-        v-bind:key="drug.id">
-        <ul>
-          <indic-item v-for="indic in drug.ind_mel_tis_ansm"
-              v-bind:indic="indic"
-              v-bind:indics="indics"
-              v-bind:key="indic.id">
-          </indic-item>
-        </ul>
-      </drug-item>
-    </ul>
--->
   
 </body>
 
