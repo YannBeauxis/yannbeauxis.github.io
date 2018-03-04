@@ -10,7 +10,7 @@ Vue.component('indics-view', {
               <b>{{indic.libelle}}</b>  
             </div>
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-lg-7">
                 <!--<i>Plantes :</i><br />-->
                 <indic-drugs-list
                   :assoIndicDrug="assoIndicDrug"
@@ -20,7 +20,7 @@ Vue.component('indics-view', {
                 </template>-->
               </div>
               <template v-if="indic.association.length > 0 ">
-                <div class="col-md-5">
+                <div class="col-lg-5">
                   <i>associations possibles :</i>
                   <ul>
 

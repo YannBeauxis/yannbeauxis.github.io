@@ -23,7 +23,7 @@ Vue.component('drug-row', {
           &nbsp <drug--name-sc :drug="drug" />
         </div>
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-lg-7">
               <drug--indic-thq
               v-for="indic in drug.ind_mel_tis_ansm"
               v-bind:indic="indic"
@@ -32,7 +32,7 @@ Vue.component('drug-row', {
               v-bind:key="indic.id"/>
           </div>
           <template v-if="drug.ind_mel_tis_ansm.length > 0">
-            <div class="col-md-5">
+            <div class="col-lg-5">
               <drug--indic-autre :drug="drug"/>
             </div>
           </template>
