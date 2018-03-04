@@ -17,7 +17,7 @@ Vue.component('drug-row', {
   props: ['drug', 'indics'],
   template: `
     <li class="list-group-item drug-row" :class="classObject">
-      <div class="container-fluid" @click="toggleSelect">
+      <div class="container" @click="toggleSelect">
         <div class="row">
           <drug--name-common :drug="drug"/> 
           &nbsp <drug--name-sc :drug="drug" />

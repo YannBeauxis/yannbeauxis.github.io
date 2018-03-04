@@ -5,7 +5,7 @@ Vue.component('indics-view', {
       <h2>Vue par indications</h2>
       <ul class="list-group">
         <li class="list-group-item" v-for="(indic, indicId) in indics">
-          <div class="container-fluid">
+          <div class="container">
             <div class="row">
               <b>{{indic.libelle}}</b>  
             </div>
