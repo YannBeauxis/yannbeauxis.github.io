@@ -1,0 +1,7 @@
+#body {
+  margin : 8px;
+}
+
+.list-group-item.drug-row.selected {
+  background-color: beige;
+}
