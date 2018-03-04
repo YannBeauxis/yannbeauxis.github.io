@@ -2,7 +2,7 @@ Vue.component('indics-view', {
   props: ['drugs', 'indics'],
   template:
     `<div>
-      <h2>Vue par indications</h2>
+      <h2>Vue par indication</h2>
       <ul class="list-group">
         <li class="list-group-item" v-for="(indic, indicId) in indics">
           <div class="container-fluid">
