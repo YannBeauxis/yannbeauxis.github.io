@@ -3,22 +3,28 @@ App.vue = new Vue({
 
   template: `
     <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">Tisanes</a>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tisanes</a>
+          </div>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item" :class="{ active: activeNav === 'drugs-view'}">
-              <a class="nav-link" href="#" @click="activeNav = 'drugs-view'">Vue par plante</a>
-            </li>
-            <li class="nav-item" :class="{ active: activeNav === 'indics-view'}">
-              <a class="nav-link" href="#" @click="activeNav = 'indics-view'">Vue par indication</a>
-            </li>
-          </ul>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav">
+              <li class="nav-item" :class="{ active: activeNav === 'drugs-view'}">
+                <a class="nav-link" href="#" @click="activeNav = 'drugs-view'">Vue par plante</a>
+              </li>
+              <li class="nav-item" :class="{ active: activeNav === 'indics-view'}">
+                <a class="nav-link" href="#" @click="activeNav = 'indics-view'">Vue par indication</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
       <div id="body">
