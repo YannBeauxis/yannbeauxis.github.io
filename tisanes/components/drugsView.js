@@ -17,7 +17,7 @@ Vue.component('drug-row', {
   props: ['drug', 'indics'],
   template: `
     <li class="list-group-item drug-row" :class="classObject">
-      <div class="container-fluid" @click="toggleSelect">
+      <div class="container-fluid" > <!-- @click="toggleSelect" -->
         <div class="row">
           <drug--name-common :drug="drug"/> 
           &nbsp <drug--name-sc :drug="drug" />
@@ -110,7 +110,7 @@ Vue.component('drug--name-sc', {
   props: ['drug'],
   template: `
       <i>
-            {{nameScEval}}
+          <a target="_blank" :href="gbifUrl">  {{nameScEval}} </a>
       </i>`,
   computed: {
     nameScEval () {
@@ -118,6 +118,13 @@ Vue.component('drug--name-sc', {
         return this.drug.gbif.name_sc;
       } else {
         return this.drug.name_sc_ansm
+      }
+    },
+    gbifUrl () {
+      if (this.drug.gbif){
+        return 'https://www.gbif.org/species/' + this.drug.gbif.id;
+      } else {
+        return ''
       }
     },
   },
