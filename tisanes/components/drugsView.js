@@ -19,9 +19,9 @@ Vue.component('drug-row', {
     <li class="list-group-item item-row" :class="classObject">
       <div class="container-fluid" > <!-- @click="toggleSelect" -->
         <div class="row">
-          <input v-show="!disabled" type="checkbox" @click="toggleSelect" >
-          <drug--name-common :drug="drug"/> 
-          &nbsp <drug--name-sc :drug="drug" />
+            <input v-show="!disabled" type="checkbox" @click="toggleSelect" class="big-checkbox" > 
+            <drug--name-common :drug="drug"/> 
+            &nbsp <drug--name-sc :drug="drug" />
         </div>
         <div class="row">
           <div class="col-lg-7">
