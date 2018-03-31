@@ -16,9 +16,10 @@ Vue.component('drugs-view', {
 Vue.component('drug-row', {
   props: ['drug', 'indics'],
   template: `
-    <li class="list-group-item drug-row" :class="classObject">
+    <li class="list-group-item item-row" :class="classObject">
       <div class="container-fluid" > <!-- @click="toggleSelect" -->
         <div class="row">
+          <input v-show="!disabled" type="checkbox" @click="toggleSelect" >
           <drug--name-common :drug="drug"/> 
           &nbsp <drug--name-sc :drug="drug" />
         </div>
@@ -51,42 +52,78 @@ Vue.component('drug-row', {
     classObject:  function () {
       return {
         selected: this.selected,
-      }
+        disabled: this.disabled,
+      };
     },
     indicsIds: function() {
-      return this.drug.ind_mel_tis_ansm.map(function(indic) { return indic.id; }) ;
-    }
+      return this.drug.ind_mel_tis_ansm.map(
+            function(indic) { return indic.id; });
+    },
+    indicsAssoIds: function() {
+      res = [];
+      this.drug.ind_mel_tis_ansm.map (
+        function( indic) { 
+          App.vue.indics[indic.id].association.map(
+            function(indicAssoId) {
+              res.push(indicAssoId);})
+        });
+      return res;
+    },
+    disabled: function() {
+      let res = false ;
+      let self = this;
+      if(App.vue.selectedDrugs.length > 0) {
+        let indics = App.vue.indics;
+        let hasIndic = self.indicsIds.reduce (
+          function (res, indId) {
+            return res 
+                    || indics[indId].active 
+                    || !indics[indId].disabled;
+          },
+          false
+        )
+        res = !hasIndic;
+      }
+      return res;
+    },
   },
 
   methods: {
     toggleSelect: function(event) {
-      let selectedDrugs = App.vue.selectedDrugs
+      let self = this;
+
       let drugId = this.drug.id
-      this.selected = !this.selected;
-      if (this.selected) {
+      let addDrug = event.target.checked;
+      this.selected = addDrug;
+      let allIndics = App.vue.indics;
+      let direction = 1;
+
+      let selectedDrugs = App.vue.selectedDrugs;
+      if (addDrug) {
         selectedDrugs.push(drugId);
+        direction = 1;
       } else {
         index = selectedDrugs.indexOf(drugId)
         if (index > -1) {
             selectedDrugs.splice(index, 1);
         }
+        direction = -1;
       }
-      let indicsA = App.vue.indicsAllowed;
-      let self = this;
-      if (indicsA[0] === 'all') {
-        indicsA = this.indicsIds;
-      } else if (selectedDrugs.length === 0) {
-        indicsA = ['all'];
-      } else {
-        indicsA = indicsA.filter( function(indA) {
-          return self.indicsIds.reduce( function (evalRes, indL) {
-                    return evalRes || (indA == indL);
-                  }, false)
-        });
-      }
-      App.vue.indicsAllowed = indicsA;
-      console.log(App.vue.indicsAllowed);
-    }
+
+      Object.keys(allIndics).map ( function (indicIds, index) {
+        let indic = allIndics[indicIds];
+        let indicId = Number(indicIds);
+        if (self.indicsIds.indexOf(indicIds) > -1 ){
+            indic.drugSelectNum += direction;
+        } else if ( self.indicsAssoIds.indexOf(indicId) === -1 ) {
+            indic.drugNotSelectNum += direction;
+        }
+        indic.selected = indic.drugSelectNum > 0 && indic.drugNotSelectNum == 0;
+        indic.disabled = indic.drugNotSelectNum > 0;
+      });
+
+    },
+
   },
 
 })

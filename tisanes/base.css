@@ -2,6 +2,12 @@
   margin : 8px;
 }
 
-.list-group-item.drug-row.selected {
+.list-group-item.item-row.selected {
   background-color: beige;
+  //color: red;
+}
+
+.list-group-item.item-row.disabled {
+  background-color: #dadada;
+  display: none;
 }

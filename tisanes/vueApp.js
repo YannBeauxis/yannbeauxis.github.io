@@ -1,19 +1,15 @@
 App.vue = new Vue({
   el: '#app',
 
+  //components: {drugsView: App.vueComponents.DrugsView},
+
   template: `
     <div id="app">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Tisanes</a>
-          </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Tisanes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav">
@@ -25,7 +21,6 @@ App.vue = new Vue({
               </li>
             </ul>
           </div>
-        </div>
       </nav>
       <div id="body">
         <drugs-view
@@ -48,6 +43,7 @@ App.vue = new Vue({
     drugs: {},
     indics: {},
     selectedDrugs: [],
+    drugAssoSelectNum: 0,
     indicsAllowed: ['all'],
   },
 
@@ -61,8 +57,19 @@ App.vue = new Vue({
       self.drugsListByName = drugsListByName;
     });
     App.loadJSON('data/indics.json', function(response) {
-      self.indics = JSON.parse(response);
+      indics = JSON.parse(response);
+      Object.keys(indics).map( function (key, index) {
+        indics[key].drugSelectNum = 0;
+        indics[key].drugNotSelectNum = 0;
+        indics[key].selected = false;
+        indics[key].disabled = true;
+      })
+      self.indics = indics;
     });
+  },
+
+  methods: {
+    
   },
 
 });
