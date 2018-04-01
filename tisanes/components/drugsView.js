@@ -1,26 +1,55 @@
 Vue.component('drugs-view', {
-  props: ['drugs-list-by-name', 'indics'],
+  props: ['selectedDrugs', 'drugs-list-by-name', 'indics', 'indicType', 'numIndicMax'],
   template:
     `<div>
       <h2>Vue par plante</h2>
-      <ul class="list-group">
-        <drug-row v-for="drug in drugsListByName"
-          :drug="drug" 
-          :indics="indics"
-          :key="drug.id">
-        </drug-row> 
-      </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3>Sélection possible</h3>
+            <ul class="list-group pre-scrollable select-drug">
+              <drug-row v-for="drug in drugsListByName"
+                v-show="!drug.selected && !drug.disabled"
+                :drugId="drug.id" 
+                :indics="indics"
+                :key="drug.id" />
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <h3>Sélectionnée par usage</h3>
+            <selected-drug v-for="indicType in indicType"
+              :selectedDrugs="selectedDrugs"
+              :numIndicMax="numIndicMax"
+              :indicType="indicType"
+              :key="indicType" />
+          </div>
+        </div>
+      </div>
     </div>`
 })
 
-Vue.component('drug-row', {
-  props: ['drug', 'indics'],
+
+Vue.component('selected-drug', {
+  props: ['indicType', 'selectedDrugs', 'numIndicMax'],
   template: `
-    <li class="list-group-item item-row" :class="classObject">
+    <div>
+      <h4>{{indicType}} ({{numIndicMax[indicType]}} max)</h4>
+        <ul class="list-group">
+          <drug-row v-for="drugId in selectedDrugs[indicType]"
+            :drugId="drugId" 
+            :indicType="indicType"
+            :key="drugId" />
+        </ul>
+    </div>
+    `,
+
+})
+
+Vue.component('drug-row', {
+  props: ['drugId', 'indicType'],
+  template: `
+    <li class="list-group-item" :class="classObject">
       <div class="container-fluid" >
-        <div class="drug-checkbox d-inline-block align-top" >
-          <input v-show="!drug.disabled" type="checkbox" @click="toggleSelect" class="big-checkbox" :checked="drug.selected"> 
-        </div>
         <div class="drug-main d-inline-block">
             <drug--name-common :drug="drug"/> 
             &nbsp <drug--name-sc :drug="drug" />
@@ -34,13 +63,27 @@ Vue.component('drug-row', {
               <drug--indic-autre :drug="drug"/>
           </template>
         </div>
+        <div class="drug-checkbox d-inline-block float-right" >
+          <template v-if="!drug.selected">
+            <b>Sélectionner</b><br />
+            <button v-show="drug.hasTherapeutic" @click="toggleSelect('thérapeutique')" class="btn btn-info btn-sm">
+              thérapeutique
+            </button> 
+          </template>
+          <template v-if="drug.selected">
+            <button @click="toggleSelect(indicType)" class="btn btn-danger btn-sm">
+              retirer
+            </button> 
+          </template>
+        </div>
       </div>
     </li>
   `,
 
   data: function () {
     return {
-      //selected: false,
+      drug: App.vue.drugs[this.drugId],
+      indics: App.vue.indics,
     }
   },
 
@@ -54,8 +97,9 @@ Vue.component('drug-row', {
   },
 
   methods: {
-    toggleSelect: function(event) {
-      App.vue.toggleSelect(event.target.checked, this.drug);
+    toggleSelect: function(indicType) {
+      addDrug = !this.drug.selected;
+      App.vue.toggleSelect(addDrug, this.drug, indicType);
     },
 
   },

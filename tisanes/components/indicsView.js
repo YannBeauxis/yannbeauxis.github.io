@@ -30,7 +30,7 @@ Vue.component('indics-view', {
 Vue.component('indic-row', {
   props: ['indic', 'indics', 'drugs', 'assoIndicDrug'],
   template:
-        `<li class="list-group-item item-row" :class="classObject" >
+        `<li class="list-group-item indic-row" :class="classObject" >
           <div>
             <b>{{indic.libelle}}</b>
           </div>

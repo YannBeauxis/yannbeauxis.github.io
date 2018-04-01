@@ -1,13 +1,14 @@
 #body {
-  margin: 60px 8px 8px 8px;
+  margin-top: 60px;
+  margin-left: auto;
 }
 
-.list-group-item.item-row.selected {
+.list-group-item.indic-row.selected {
   background-color: beige;
   //color: red;
 }
 
-.list-group-item.item-row.disabled {
+.list-group-item.indic-row.disabled {
   background-color: #dadada;
   display: none;
 }
@@ -31,3 +32,7 @@
   cursor: not-allowed;
 }
 
+.pre-scrollable.select-drug {
+  max-height: 700px;
+  margin: -4px;
+}
