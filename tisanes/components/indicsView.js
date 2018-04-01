@@ -2,7 +2,7 @@ Vue.component('indics-view', {
   props: ['drugs', 'indics'],
   template:
     `<div>
-      <h2>Vue par indication</h2>
+      <h3>Indications thérapeutiques</h3>
       <ul class="list-group">
         <indic-row v-for="indic in indics"
           :indic="indic" 
@@ -12,6 +12,8 @@ Vue.component('indics-view', {
           :key="indic.id">
         </indic-row> 
       </ul>
+      <h3>Saveur</h3>
+      <h3>Aspect</h3>
     </div>`,
   computed: {
     assoIndicDrug() {
@@ -97,7 +99,7 @@ Vue.component('indic-drug-item', {
   methods: {
     toggleSelect() {
       if (!this.drug.disabled) {
-        App.vue.toggleSelect(!this.drug.selected, this.drug);
+        App.vue.toggleSelect(!this.drug.selected, this.drug, 'thérapeutique');
       }
     },
   },
@@ -107,9 +109,9 @@ Vue.component('indic-drug-item', {
 Vue.component('indic-thq', {
   props: ['indicId', 'indics'],
   template: `
-      <span class="badge indic-ther m-1 p-1" :class="classObject">
+      <div class="badge indic-ther m-1 p-1" :class="classObject">
             {{libelle}}
-      </span>`,
+      </div>`,
   computed: {
     indic() {
       return this.indics[this.indicId];

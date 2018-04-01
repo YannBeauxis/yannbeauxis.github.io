@@ -13,16 +13,20 @@
   display: none;
 }
 
+.badge.indic-ther.badge-secondary {
+  display: none;
+}
+
 .big-checkbox {
   width: 30px; 
   height: 30px;
 }
 
-.badge.indic-ther, .indic-autre {
+/*.badge.indic-ther, .indic-autre {
     display: block; 
     float: left; 
     clear: left; 
-}
+}*/
 
 .indic-drug-badge {
   cursor: pointer;

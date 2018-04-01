@@ -71,6 +71,9 @@ App.vue = new Vue({
         drugs[key].selected = false;
         drugs[key].disabled = false;
         drugs[key].hasTherapeutic = true;
+        drugs[key].hasOther = {
+            aspect: false,
+            saveur: false}
         drugs[key].indicType = '';
       })
       App.loadJSON('data/indics.json', function(response) {
@@ -84,6 +87,7 @@ App.vue = new Vue({
         self.drugs = drugs;
         self.drugsListByName = drugsListByName;
         self.indics = indics;
+        self.updateDrugs();
       });
     });
 
@@ -161,9 +165,19 @@ App.vue = new Vue({
             },
             false
           )
-          drug.hasTherapeutic = hasIndic
+          drug.hasTherapeutic = hasIndic && (self.selectedDrugs['thérapeutique'].length < self.numIndicMax['thérapeutique']);
         }
-        drug.disabled = !drug.hasTherapeutic;
+        let not_dis = ['aspect', 'saveur'].reduce( 
+            function (bool, t) {
+              drug.hasOther[t] =  ( (drug.indications.other.indexOf(t) > -1)
+                && (self.selectedDrugs[t].length < self.numIndicMax[t]) 
+                )
+              return bool || drug.hasOther[t]
+               
+            },
+            false );
+        //not_dis = not_dis || self.selectedDrugs['thérapeutique'].length < self.numIndicMax['thérapeutique'];
+        drug.disabled = !drug.hasTherapeutic && !not_dis
       });
     },
   },
