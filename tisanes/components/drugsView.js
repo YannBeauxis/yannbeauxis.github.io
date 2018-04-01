@@ -127,9 +127,9 @@ Vue.component('drug--name-common', {
 Vue.component('drug--name-sc', {
   props: ['drug'],
   template: `
-      <i>
+      <small><i class="float-right">
           <a target="_blank" :href="gbifUrl">  {{nameScEval}} </a>
-      </i>`,
+      </i></small>`,
   computed: {
     nameScEval () {
       if (this.drug.gbif){
