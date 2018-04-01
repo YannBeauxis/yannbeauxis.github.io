@@ -26,3 +26,8 @@
 .indic-drug-badge {
   cursor: pointer;
 }
+
+.indic-drug-badge.disabled {
+  cursor: not-allowed;
+}
+

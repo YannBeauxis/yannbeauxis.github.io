@@ -31,30 +31,24 @@ Vue.component('indic-row', {
   props: ['indic', 'indics', 'drugs', 'assoIndicDrug'],
   template:
         `<li class="list-group-item item-row" :class="classObject" >
-          <div class="container-fluid">
-            <div class="row">
-              <b>{{indic.libelle}}</b>
-            </div>
-                <!--<i>Plantes :</i><br />-->
-                <div>
-                  <indic-drug-item v-for="drugId in assoDrugs"
-                    :drugId="drugId"
-                    :drugs="drugs"
-                    :indic="indic" 
-                    :key="drugId"/>
-              <div>
-                <template v-if="indic.association.length > 0 ">
-                    <div><i>associations possibles :</i><div>
-                    <div 
-                      class="badge badge-info indic-autre p-1 m-1" 
-                      v-for="assoId in indic.association"
-                      :key="assoId">
-                      {{indics[assoId].libelle}}
-                    </div>
-                </template>
-              <div>
-            </div>
+          <div>
+            <b>{{indic.libelle}}</b>
           </div>
+          <div>
+            <indic-drug-item v-for="drugId in assoDrugs"
+              :drugId="drugId"
+              :drugs="drugs"
+              :indic="indic" 
+              :key="drugId"/>
+          </div>
+          <template v-if="indic.association.length > 0 ">
+              <div><i>associations possibles :</i></div>
+              <indic-thq
+                    v-for="indicId in indic.association"
+                    :indicId="indicId"
+                    :indics="indics"
+                    :key="indicId" />
+          </template>
         </li>`,
   computed: {
     classObject:  function () {
@@ -75,7 +69,7 @@ Vue.component('indic-drug-item', {
   props: ['drugId', 'drugs', 'indic'],
 
   template:
-    `<div :class="classObject" @click="toggleSelect">
+    `<div class="badge p-1 m-1 indic-drug-badge" :class="classObject" @click="toggleSelect">
       {{drugDisplay}}
     </div>`,
 
@@ -84,8 +78,14 @@ Vue.component('indic-drug-item', {
       let badgeType = 'success';
       if (this.drug.selected) {
         badgeType = 'warning';
-      } 
-      return "badge badge-" + badgeType + " p-1 m-1 indic-drug-badge";
+      } else if (this.drug.disabled) {
+        badgeType = 'secondary';
+      }
+      badgeType = "badge-" + badgeType
+      //return "badge badge-" + badgeType + " p-1 m-1 indic-drug-badge";
+      res = {disabled: this.drug.disabled};
+      res[badgeType] = true;
+      return res;
     },
     drugDisplay() {
       return App.capitalizeFirst(this.drug.name_fr);
@@ -96,8 +96,36 @@ Vue.component('indic-drug-item', {
   },
   methods: {
     toggleSelect() {
-      App.vue.toggleSelect(!this.drug.selected, this.drug);
+      if (!this.drug.disabled) {
+        App.vue.toggleSelect(!this.drug.selected, this.drug);
+      }
     },
   },
 
+})
+
+Vue.component('indic-thq', {
+  props: ['indicId', 'indics'],
+  template: `
+      <span class="badge indic-ther m-1 p-1" :class="classObject">
+            {{libelle}}
+      </span>`,
+  computed: {
+    indic() {
+      return this.indics[this.indicId];
+    },
+    classObject() {
+      let badge = "info";
+      if (this.indic.disabled) {
+        badge = "secondary";
+      } else if (this.indic.selected) {
+        badge = "warning";
+      }
+      return "badge-" + badge;
+    },
+    libelle () {
+      if (this.indic){
+        return this.indic.libelle;}
+    },
+  },
 })

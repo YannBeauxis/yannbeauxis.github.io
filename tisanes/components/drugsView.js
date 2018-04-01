@@ -19,19 +19,17 @@ Vue.component('drug-row', {
     <li class="list-group-item item-row" :class="classObject">
       <div class="container-fluid" >
         <div class="drug-checkbox d-inline-block align-top" >
-          <input v-show="!disabled" type="checkbox" @click="toggleSelect" class="big-checkbox" :checked="drug.selected"> 
+          <input v-show="!drug.disabled" type="checkbox" @click="toggleSelect" class="big-checkbox" :checked="drug.selected"> 
         </div>
         <div class="drug-main d-inline-block">
             <drug--name-common :drug="drug"/> 
             &nbsp <drug--name-sc :drug="drug" />
             <br />
-              <drug--indic-thq
+              <indic-thq
               v-for="indicId in drug.indications.therapeutic"
                     :indicId="indicId"
                     :indics="indics"
-                    :drug="drug"
-                    :key="indicId">
-              </drug--indic-thq>
+                    :key="indicId" />
           <template v-if="drug.indications.other.length > 0">
               <drug--indic-autre :drug="drug"/>
           </template>
@@ -50,25 +48,8 @@ Vue.component('drug-row', {
     classObject:  function () {
       return {
         selected: this.drug.selected,
-        disabled: this.disabled,
+        disabled: this.drug.disabled,
       };
-    },
-    disabled: function() {
-      let res = false ;
-      let self = this;
-      if(App.vue.selectedDrugs.length > 0) {
-        let indics = App.vue.indics;
-        let hasIndic = self.drug.indications.therapeutic.reduce (
-          function (res, indId) {
-            return res 
-                    || indics[indId].active 
-                    || !indics[indId].disabled;
-          },
-          false
-        )
-        res = !hasIndic;
-      }
-      return res;
     },
   },
 
@@ -123,23 +104,6 @@ Vue.component('drug--name-sc', {
   },
 })
 
-Vue.component('drug--indic-thq', {
-  props: ['indicId', 'indics', 'drug'],
-  template: `
-      <span class="badge badge-info indic-ther m-1 p-1">
-            {{libelle}}
-      </span>`,
-  computed: {
-    thisIndic () {
-      return this.indics[this.indicId]
-    },
-    libelle () {
-      if (this.thisIndic){
-        return this.thisIndic.libelle;}
-    },
-  },
-})
-
 Vue.component('drug--indic-autre', {
   props: ['drug'],
   template: `<div class="indic-autre" v-html="indicEval" />`,
@@ -148,7 +112,7 @@ Vue.component('drug--indic-autre', {
       let res = [];
       ['saveur', 'aspect'].forEach(function(i) {
         if ( this.drug.indications.other.indexOf(i) > -1 ) { 
-          let toPush = '<div class="badge badge-secondary" m-1 p-1>' + i + '</div>';
+          let toPush = '<div class="badge badge-light" m-1 p-1>' + i + '</div>';
           res.push(toPush); }
       }, this)
       res = res.join('');
@@ -159,3 +123,5 @@ Vue.component('drug--indic-autre', {
     },
   },
 })
+
+

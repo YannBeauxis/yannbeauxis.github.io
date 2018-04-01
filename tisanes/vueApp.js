@@ -45,6 +45,10 @@ App.vue = new Vue({
     selectedDrugs: [],
     drugAssoSelectNum: 0,
     indicsAllowed: ['all'],
+    numIndicMax: {
+      'therapeutic': 5,
+      'saveur': 3,
+      'aspect': 2,},
   },
 
   created: function() {
@@ -57,26 +61,24 @@ App.vue = new Vue({
         drugs[key].selected = false;
         drugs[key].disabled = false;
       })
-      self.drugs = drugs;
-      self.drugsListByName = drugsListByName;
+      App.loadJSON('data/indics.json', function(response) {
+        indics = JSON.parse(response);
+        Object.keys(indics).map( function (key, index) {
+          indics[key].drugSelectNum = 0;
+          indics[key].drugNotSelectNum = 0;
+          indics[key].selected = false;
+          indics[key].disabled = false;
+        })
+        self.drugs = drugs;
+        self.drugsListByName = drugsListByName;
+        self.indics = indics;
+      });
+    });
 
-    });
-    App.loadJSON('data/indics.json', function(response) {
-      indics = JSON.parse(response);
-      Object.keys(indics).map( function (key, index) {
-        indics[key].drugSelectNum = 0;
-        indics[key].drugNotSelectNum = 0;
-        indics[key].selected = false;
-        indics[key].disabled = false;
-      })
-      self.indics = indics;
-    });
   },
 
   methods: {
     toggleSelect: function(addDrug, drug) {
-
-      let indicsIds = drug.indications.therapeutic;
 
       indicsAssoIds = [];
       drug.indications.therapeutic.map (
@@ -88,7 +90,6 @@ App.vue = new Vue({
 
       let drugId = drug.id
       drug.selected = addDrug;
-      let allIndics = App.vue.indics;
       let direction = 1;
 
       let selectedDrugs = App.vue.selectedDrugs;
@@ -96,13 +97,15 @@ App.vue = new Vue({
         selectedDrugs.push(drugId);
         direction = 1;
       } else {
-        index = selectedDrugs.indexOf(drugId)
+        let index = selectedDrugs.indexOf(drugId);
         if (index > -1) {
             selectedDrugs.splice(index, 1);
         }
         direction = -1;
       }
 
+      let allIndics = App.vue.indics;
+      let indicsIds = drug.indications.therapeutic;
       Object.keys(allIndics).map ( function (indicIds, index) {
         let indic = allIndics[indicIds];
         let indicId = Number(indicIds);
@@ -115,6 +118,36 @@ App.vue = new Vue({
         indic.disabled = indic.drugNotSelectNum > 0;
       });
 
+
+
+      this.updateDrugsDisabled();
+      //this.updateIndics(drug);
+    },
+    updateIndics: function(drug) {
+
+    },
+    updateDrugsDisabled: function() {
+      Object.keys(this.drugs).map( function (drugId) {
+        let drug = App.vue.drugs[drugId];
+        if(App.vue.selectedDrugs.length === 0 || drug.selected) {
+          res =  false;
+        } else {
+          let indics = App.vue.indics;
+          let hasIndic = drug.indications.therapeutic.reduce (
+            function (res, indId) {
+              return res 
+                      || indics[indId].active 
+                      || !indics[indId].disabled;
+            },
+            false
+          )
+          res = 
+              !hasIndic 
+            || 
+              App.vue.selectedDrugs.length >= App.vue.numIndicMax.therapeutic;
+        }
+        drug.disabled = res;
+      });
     },
   },
 
