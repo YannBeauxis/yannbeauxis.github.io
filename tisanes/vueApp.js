@@ -53,8 +53,13 @@ App.vue = new Vue({
       let drugs = JSON.parse(response);
       let drugsListByName = Object.values(drugs).sort(function (a, b) {
                   return a.name_fr > b.name_fr;}); 
+      Object.keys(drugs).map( function (key, index) {
+        drugs[key].selected = false;
+        drugs[key].disabled = false;
+      })
       self.drugs = drugs;
       self.drugsListByName = drugsListByName;
+
     });
     App.loadJSON('data/indics.json', function(response) {
       indics = JSON.parse(response);
@@ -69,7 +74,48 @@ App.vue = new Vue({
   },
 
   methods: {
-    
+    toggleSelect: function(addDrug, drug) {
+
+      let indicsIds = drug.indications.therapeutic;
+
+      indicsAssoIds = [];
+      drug.indications.therapeutic.map (
+        function( indicId ) { 
+          App.vue.indics[indicId].association.map(
+            function(indicAssoId) {
+              indicsAssoIds.push(indicAssoId);})
+        });
+
+      let drugId = drug.id
+      drug.selected = addDrug;
+      let allIndics = App.vue.indics;
+      let direction = 1;
+
+      let selectedDrugs = App.vue.selectedDrugs;
+      if (addDrug) {
+        selectedDrugs.push(drugId);
+        direction = 1;
+      } else {
+        index = selectedDrugs.indexOf(drugId)
+        if (index > -1) {
+            selectedDrugs.splice(index, 1);
+        }
+        direction = -1;
+      }
+
+      Object.keys(allIndics).map ( function (indicIds, index) {
+        let indic = allIndics[indicIds];
+        let indicId = Number(indicIds);
+        if (indicsIds.indexOf(indicIds) > -1 ){
+            indic.drugSelectNum += direction;
+        } else if ( indicsAssoIds.indexOf(indicId) === -1 ) {
+            indic.drugNotSelectNum += direction;
+        }
+        indic.selected = indic.drugSelectNum > 0 && indic.drugNotSelectNum == 0;
+        indic.disabled = indic.drugNotSelectNum > 0;
+      });
+
+    },
   },
 
 });

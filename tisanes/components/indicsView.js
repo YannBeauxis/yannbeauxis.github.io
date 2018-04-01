@@ -7,39 +7,52 @@ Vue.component('indics-view', {
         <indic-row v-for="indic in indics"
           :indic="indic" 
           :indics="indics"
+          :assoIndicDrug="assoIndicDrug"
           :drugs="drugs"
           :key="indic.id">
         </indic-row> 
       </ul>
     </div>`,
+  computed: {
+    assoIndicDrug() {
+      let assoIndicDrug = {}
+      Object.keys(this.indics).map(function(indicId) {
+        assoIndicDrug[indicId] = [] })
+      Object.values(this.drugs).map(function(drug) {
+        drug.indications.therapeutic.map(function(indicId) {
+          assoIndicDrug[indicId].push(drug.id); })
+      })
+      return assoIndicDrug;
+    },
+  },
 })
 
 Vue.component('indic-row', {
-  props: ['indic', 'indics', 'drugs'],
+  props: ['indic', 'indics', 'drugs', 'assoIndicDrug'],
   template:
         `<li class="list-group-item item-row" :class="classObject" >
           <div class="container-fluid">
             <div class="row">
               <b>{{indic.libelle}}</b>
             </div>
-            <div class="row">
-              <div class="col-lg-7">
                 <!--<i>Plantes :</i><br />-->
-                <indic-drugs-list
-                  :assoIndicDrug="assoIndicDrug"
-                  :indic="indic" />
-              </div>
-              <template v-if="indic.association.length > 0 ">
-                <div class="col-lg-5">
-                  <i>associations possibles :</i>
-                  <ul>
-
-                    <li v-for="assoId in indic.association">
+                <div>
+                  <indic-drug-item v-for="drugId in assoDrugs"
+                    :drugId="drugId"
+                    :drugs="drugs"
+                    :indic="indic" 
+                    :key="drugId"/>
+              <div>
+                <template v-if="indic.association.length > 0 ">
+                    <div><i>associations possibles :</i><div>
+                    <div 
+                      class="badge badge-info indic-autre p-1 m-1" 
+                      v-for="assoId in indic.association"
+                      :key="assoId">
                       {{indics[assoId].libelle}}
-                    </li>
-                  </ul>
-                </div>
-              </template>
+                    </div>
+                </template>
+              <div>
             </div>
           </div>
         </li>`,
@@ -50,37 +63,40 @@ Vue.component('indic-row', {
         disabled: this.indic.disabled,
       }
     },
-    assoIndicDrug() {
-      let assoIndicDrug = {}
-      Object.keys(this.indics).map(function(indicId) {
-        assoIndicDrug[indicId] = [] })
-      Object.values(this.drugs).map(function(drug) {
-        drug.ind_mel_tis_ansm.map(function(drugIndic) {
-          assoIndicDrug[drugIndic.id].push(drug.id); })
-      })
-      return assoIndicDrug;
+    assoDrugs:  function () {
+      return this.assoIndicDrug[this.indic.id];
     },
   }
 
 })
 
-Vue.component('indic-drugs-list', {
+Vue.component('indic-drug-item', {
 
-  props: ['assoIndicDrug', 'indic'],
+  props: ['drugId', 'drugs', 'indic'],
 
   template:
-    `<div>
-      {{drugList}}
+    `<div :class="classObject" @click="toggleSelect">
+      {{drugDisplay}}
     </div>`,
 
   computed: {
-    drugList() {
-      if ( !this.indic.id ) {
-        console.log(this.indic.libelle); }
-      listRaw = this.assoIndicDrug[this.indic.id].map(function (drugId) {
-        return App.capitalizeFirst(App.vue.drugs[drugId].name_fr);
-      })
-      return listRaw.join(', ')
+    classObject() {
+      let badgeType = 'success';
+      if (this.drug.selected) {
+        badgeType = 'warning';
+      } 
+      return "badge badge-" + badgeType + " p-1 m-1 indic-drug-badge";
+    },
+    drugDisplay() {
+      return App.capitalizeFirst(this.drug.name_fr);
+    },
+    drug() {
+      return this.drugs[this.drugId];
+    },
+  },
+  methods: {
+    toggleSelect() {
+      App.vue.toggleSelect(!this.drug.selected, this.drug);
     },
   },
 
