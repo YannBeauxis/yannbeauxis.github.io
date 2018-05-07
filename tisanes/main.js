@@ -41,7 +41,10 @@ App = {
 //$(document).ready(function(){
 document.addEventListener("DOMContentLoaded", function(event) { 
   //App.importJS('./components/navBar.js');
+  App.importJS('./components/processStep.js');
+  App.importJS('./components/stepNav.js');
   App.importJS('./components/drugsView.js');
   App.importJS('./components/indicsView.js');
   App.importJS('./vueApp.js');
+
 });

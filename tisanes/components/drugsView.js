@@ -1,30 +1,27 @@
 Vue.component('drugs-view', {
-  props: ['selectedDrugs', 'drugs-list-by-name', 'indics', 'indicType', 'numIndicMax'],
+  props: ['selectedDrugs', 'drugs-list-by-name', 'indics', 'numIndicMax'],
   template:
     `<div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <h4>Sélection possible</h4>
-            <ul class="list-group pre-scrollable select-drug">
-              <drug-row v-for="drug in drugsListByName"
-                v-show="!drug.selected && !drug.disabled"
-                :drugId="drug.id" 
-                :indics="indics"
-                :key="drug.id" />
-            </ul>
-          </div>
-          <div class="col-sm-6">
-            <h4>Sélectionnée par usage</h4>
-            <selected-drug v-for="indicType in indicType"
-              :selectedDrugs="selectedDrugs"
-              :numIndicMax="numIndicMax"
-              :indicType="indicType"
-              :key="indicType" />
-          </div>
-        </div>
-      </div>
-    </div>`
+        <ul class="list-group pre-scrollable select-drug">
+          <drug-row v-for="drug in drugsListByName"
+            :drugId="drug.id" 
+            :context="'toSelect'"
+            :indicType="indicType"
+            :key="drug.id" />
+        </ul>
+    </div>`,
+    computed: {
+      indicType: function(){
+        if (App.vue.activeStep === 0) {
+          return 'thérapeutique'
+        } else if (App.vue.activeStep === 1) {
+          let activeNavDic = {
+            taste: 'saveur',
+            look: 'aspect'};
+          return activeNavDic[App.vue.activeNav]; 
+        }
+      }
+    }
 })
 
 
@@ -37,6 +34,7 @@ Vue.component('selected-drug', {
           <drug-row v-for="drugId in selectedDrugs[indicType]"
             :drugId="drugId" 
             :indicType="indicType"
+            :context="'selected'"
             :key="drugId" />
         </ul>
     </div>
@@ -45,9 +43,9 @@ Vue.component('selected-drug', {
 })
 
 Vue.component('drug-row', {
-  props: ['drugId', 'indicType'],
+  props: ['drugId', 'indicType', 'context'],
   template: `
-    <li class="list-group-item" :class="classObject">
+    <li class="list-group-item" :class="classObject" v-show="toShow">
         <div>
           <drug--name-common :drug="drug"/> 
           &nbsp <drug--name-sc :drug="drug" />
@@ -61,14 +59,8 @@ Vue.component('drug-row', {
         </div>
         <div>
           <template v-if="!drug.selected">
-            <button v-show="drug.hasTherapeutic" @click="toggleSelect('thérapeutique')" class="btn btn-info btn-sm float-right">
-              + thérapeutique
-            </button> 
-            <button v-show="drug.hasOther.saveur" @click="toggleSelect('saveur')" class="btn btn-light btn-sm float-right">
-              + saveur
-            </button> 
-            <button v-show="drug.hasOther.aspect" @click="toggleSelect('aspect')" class="btn btn-light btn-sm float-right">
-              + aspect
+            <button @click="toggleSelect(indicType)" class="btn btn-info btn-sm float-right">
+              Ajouter
             </button> 
           </template>
           <template v-if="drug.selected">
@@ -93,6 +85,22 @@ Vue.component('drug-row', {
         selected: this.drug.selected,
         disabled: this.drug.disabled,
       };
+    },
+    toShow: function() {
+      if (this.context === 'toSelect') {
+        let selectable = !this.drug.selected && !this.drug.disabled;
+        let goodContext = 
+          (App.vue.activeStep === 0 && this.drug.hasTherapeutic)
+          ||
+          (App.vue.activeStep === 1 && 
+            (App.vue.activeNav === 'taste' && this.drug.hasOther.saveur)   
+            ||
+            (App.vue.activeNav === 'look' && this.drug.hasOther.aspect)   
+          )
+        return selectable && goodContext;
+      } else if (this.context === 'selected') {
+        return this.drug.selected;
+      }
     },
   },
 

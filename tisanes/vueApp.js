@@ -23,26 +23,66 @@ App.vue = new Vue({
           </div>
       </nav>
       <div id="body" class="container">
-        <drugs-view
-          v-show="activeNav === 'drugs-view'" 
-          :selectedDrugs="selectedDrugs"
-          :numIndicMax="numIndicMax"
-          :drugs-list-by-name="drugsListByName"
-          :indics="indics"
-          :indicType="indicType">
-        </drugs-view>
-        <indics-view
-          v-show="activeNav === 'indics-view'" 
-          :drugs="drugs"
-          :indics="indics">
-        </indics-view>
+        <process-step
+          :activeStep='activeStep'
+          :processes='processes'
+        />
+        <step-nav
+          :activeNav='activeNav'
+          :activeStep='activeStep'
+          :processes='processes'
+        />
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <drugs-view
+                v-show="activeNav === 'drugs' || activeStep === 1" 
+                :selectedDrugs="selectedDrugs"
+                :numIndicMax="numIndicMax"
+                :drugs-list-by-name="drugsListByName"
+                :indics="indics"
+                :indicType="indicType">
+              </drugs-view>
+              <indics-view
+                v-show="activeNav === 'indics'" 
+                :drugs="drugs"
+                :indics="indics">
+              </indics-view>
+            </div>
+            <div class="col-sm-6">
+              <h4>Sélection</h4>
+              <selected-drug v-for="indicType in indicType"
+                :selectedDrugs="selectedDrugs"
+                :numIndicMax="numIndicMax"
+                :indicType="indicType"
+                :key="indicType" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `,
 
   data: function () {
     d = {
-    activeNav: 'drugs-view',
+    processes: [
+       {
+        libelle: 'Principes actifs',
+        navs: [
+          {id:'drugs', libelle: 'Drogue végétale'},
+          {id:'indics', libelle:'Indicactions'},
+        ],
+      },
+      {
+        libelle: 'Saveur et aspect',
+        navs: [
+          {id:'taste', libelle: 'Saveur'},
+          {id:'look', libelle:'Aspect'},
+        ],
+      },
+    ],
+    activeStep: 0,
+    activeNav: 'drugs',
     drugsListByName: [],
     drugs: {},
     indics: {},
