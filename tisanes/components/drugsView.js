@@ -1,7 +1,7 @@
 Vue.component('drugs-view', {
   props: ['selectedDrugs', 'drugs-list-by-name', 'indics', 'numIndicMax'],
   template:
-    `<div class="select-drug">
+    `<div>
         <ul class="list-group">
           <drug-row v-for="drug in drugsListByName"
             :drugId="drug.id" 

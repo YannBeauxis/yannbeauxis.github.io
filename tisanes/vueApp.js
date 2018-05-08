@@ -29,16 +29,17 @@ App.vue = new Vue({
         />
       </div>
       <div id="content">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="test-flex">
+        <button type="button" class="btn btn-warning btn-circle btn-lg toggle-view" @click="toggleView()"><i class="glyphicon glyphicon-ok"></i></button>
+        <div class="row controlled-height">
+          <div class="col-lg-6 controlled-height drug-selection">
+            <div class="flex-column controlled-height">
               <step-nav
                 :activeNav='activeNav'
                 :activeStep='activeStep'
                 :steps='steps'
                 class="step-nav"
               />
-              <div class="select-drug">
+              <div class="flex-scroll">
                 <drugs-view
                   v-show="activeNav === 'drugs' || activeStep === 1" 
                   :selectedDrugs="selectedDrugs"
@@ -55,23 +56,23 @@ App.vue = new Vue({
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="">
+          <div class="col-lg-6 controlled-height drug-selected">
+            <div class="flex-column controlled-height">
               <h4 class="selection-view text-center w-100">Sélection</h4>
-            </div>
-            <div class="list-group pre-scrollable select-drug">
-              <selected-drug v-for="indicType in indicType"
-                :selectedDrugs="selectedDrugs"
-                :numIndicMax="numIndicMax"
-                :indicType="indicType"
-                :key="indicType" />
+              <div class="list-group flex-scroll">
+                <selected-drug v-for="indicType in indicType"
+                  :selectedDrugs="selectedDrugs"
+                  :numIndicMax="numIndicMax"
+                  :indicType="indicType"
+                  :key="indicType" />
+              </div>
             </div>
           </div>
         </div>
+
       </div>
-              <div id="footer">
-                <p><b>footer</b> (fixed height)</p>
-              </div>
+      <div id="footer">
+      </div>
     </div>
   `,
 
@@ -156,6 +157,9 @@ App.vue = new Vue({
   },
 
   methods: {
+    toggleView: function() {
+      $('.drug-selection, .drug-selected').toggle()
+    },
     toggleSelect: function(addDrug, drug, indicType) {
       let self = this
       indicsAssoIds = [];

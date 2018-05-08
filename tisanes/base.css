@@ -26,11 +26,20 @@ html, body {
 #content {
   flex: 1 1 auto;
   min-height: 0;
+  height: 100%;
+
 }
 
+.row {
+  margin-right: 0px;
+}
+
+.controlled-height {
+  height: inherit;
+}
 
 #footer {
-  flex: 0 1 40px;
+  flex: 0 1 0px;
 }
 
 
@@ -67,22 +76,63 @@ html, body {
   cursor: not-allowed;
 }
 
-.test-flexxx {
+.flex-column {
   display: flex;
   flex-flow: column;
   //height: 100%;
 }
 
 
-.select-drug {
+.flex-scroll {
   flex: 1 1 auto;
-}
-
-.flex-nav {
-  flex: 0 1 auto;
+  overflow-y: scroll;
 }
 
 .selection-view {
   height: 48px;
   line-height: 48px;
+}
+
+.drug-selection {
+  padding-right: 0px;
+}
+
+@media (max-width: 992px) {
+  .drug-selected {
+    display: none;
+  }
+  .toggle-view {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .toggle-view {
+    display: none;
+  }
+}
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.toggle-view {
+    position: absolute;
+    bottom: 3px;
+    right: 15px;
+    z-index: 999;
 }
