@@ -2,7 +2,6 @@ Vue.component('indics-view', {
   props: ['drugs', 'indics'],
   template:
     `<div>
-      <h3>Indications thérapeutiques</h3>
       <ul class="list-group">
         <indic-row v-for="indic in indics"
           :indic="indic" 
@@ -12,8 +11,6 @@ Vue.component('indics-view', {
           :key="indic.id">
         </indic-row> 
       </ul>
-      <h3>Saveur</h3>
-      <h3>Aspect</h3>
     </div>`,
   computed: {
     assoIndicDrug() {

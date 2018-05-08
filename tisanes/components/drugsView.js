@@ -1,8 +1,8 @@
 Vue.component('drugs-view', {
   props: ['selectedDrugs', 'drugs-list-by-name', 'indics', 'numIndicMax'],
   template:
-    `<div>
-        <ul class="list-group pre-scrollable select-drug">
+    `<div class="select-drug">
+        <ul class="list-group">
           <drug-row v-for="drug in drugsListByName"
             :drugId="drug.id" 
             :context="'toSelect'"

@@ -1,7 +1,38 @@
-#body {
-  margin-top: 60px;
-  margin-left: auto;
+/*.container {
+  max-width: 100%;
+  padding: 0;
+}*/
+
+html, body {
+  height: 100%;
 }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+}
+
+
+#menu {
+  flex: 0 1 auto;
+}
+
+#content {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+
+#footer {
+  flex: 0 1 40px;
+}
+
 
 .list-group-item.indic-row.selected {
   background-color: beige;
@@ -36,7 +67,22 @@
   cursor: not-allowed;
 }
 
-.pre-scrollable.select-drug {
-  max-height: 700px;
-  margin: -4px;
+.test-flexxx {
+  display: flex;
+  flex-flow: column;
+  //height: 100%;
+}
+
+
+.select-drug {
+  flex: 1 1 auto;
+}
+
+.flex-nav {
+  flex: 0 1 auto;
+}
+
+.selection-view {
+  height: 48px;
+  line-height: 48px;
 }

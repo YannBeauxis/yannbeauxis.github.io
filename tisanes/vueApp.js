@@ -5,52 +5,61 @@ App.vue = new Vue({
 
   template: `
     <div id="app">
-      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Tisanes</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <div id="menu">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Tisanes</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav">
-              <li class="nav-item" :class="{ active: activeNav === 'drugs-view'}">
-                <a class="nav-link" href="#" @click="activeNav = 'drugs-view'">Vue par plante</a>
-              </li>
-              <li class="nav-item" :class="{ active: activeNav === 'indics-view'}">
-                <a class="nav-link" href="#" @click="activeNav = 'indics-view'">Vue par indication</a>
-              </li>
-            </ul>
-          </div>
-      </nav>
-      <div id="body" class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav">
+                <li class="nav-item" :class="{ active: activeNav === 'drugs-view'}">
+                  <a class="nav-link" href="#" @click="activeNav = 'drugs-view'">Vue par plante</a>
+                </li>
+                <li class="nav-item" :class="{ active: activeNav === 'indics-view'}">
+                  <a class="nav-link" href="#" @click="activeNav = 'indics-view'">Vue par indication</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
         <process-step
           :activeStep='activeStep'
-          :processes='processes'
+          :steps='steps'
         />
-        <step-nav
-          :activeNav='activeNav'
-          :activeStep='activeStep'
-          :processes='processes'
-        />
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <drugs-view
-                v-show="activeNav === 'drugs' || activeStep === 1" 
-                :selectedDrugs="selectedDrugs"
-                :numIndicMax="numIndicMax"
-                :drugs-list-by-name="drugsListByName"
-                :indics="indics"
-                :indicType="indicType">
-              </drugs-view>
-              <indics-view
-                v-show="activeNav === 'indics'" 
-                :drugs="drugs"
-                :indics="indics">
-              </indics-view>
+      </div>
+      <div id="content">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="test-flex">
+              <step-nav
+                :activeNav='activeNav'
+                :activeStep='activeStep'
+                :steps='steps'
+                class="step-nav"
+              />
+              <div class="select-drug">
+                <drugs-view
+                  v-show="activeNav === 'drugs' || activeStep === 1" 
+                  :selectedDrugs="selectedDrugs"
+                  :numIndicMax="numIndicMax"
+                  :drugs-list-by-name="drugsListByName"
+                  :indics="indics"
+                  :indicType="indicType">
+                </drugs-view>
+                <indics-view
+                  v-show="activeNav === 'indics'" 
+                  :drugs="drugs"
+                  :indics="indics">
+                </indics-view>
+              </div>
             </div>
-            <div class="col-sm-6">
-              <h4>Sélection</h4>
+          </div>
+          <div class="col-lg-6">
+            <div class="">
+              <h4 class="selection-view text-center w-100">Sélection</h4>
+            </div>
+            <div class="list-group pre-scrollable select-drug">
               <selected-drug v-for="indicType in indicType"
                 :selectedDrugs="selectedDrugs"
                 :numIndicMax="numIndicMax"
@@ -60,17 +69,20 @@ App.vue = new Vue({
           </div>
         </div>
       </div>
+              <div id="footer">
+                <p><b>footer</b> (fixed height)</p>
+              </div>
     </div>
   `,
 
   data: function () {
     d = {
-    processes: [
+    steps: [
        {
         libelle: 'Principes actifs',
         navs: [
           {id:'drugs', libelle: 'Drogue végétale'},
-          {id:'indics', libelle:'Indicactions'},
+          {id:'indics', libelle:'Indications'},
         ],
       },
       {

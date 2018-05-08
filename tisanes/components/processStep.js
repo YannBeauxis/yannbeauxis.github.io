@@ -1,27 +1,28 @@
 Vue.component('process-step', {
 
-  props: ['activeStep', 'processes',],
+  props: ['activeStep', 'steps',],
 
   template:
-    `<div>
-      <a v-if="activeStep>0" href="#" @click="moveProcess(-1)" > Back </a>
-      | 
-      {{processInfo.libelle}} 
-      |
-      <a v-if="activeStep<processes.length-1" href="#" @click="moveProcess(1)" > Next </a>
-    </div>`,
+    `<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li 
+            v-for="(step, index) in steps" 
+            class="breadcrumb-item">
+              <a href="#" @click="goStep(index)"> {{step.libelle}} </a>
+          </li>
+        </ol>
+      </nav>`,
 
   computed: {
     processInfo:  function () {
-      return this.processes[this.activeStep];
+      return this.steps[this.activeStep];
     },
   },
 
   methods: {
-    moveProcess: function(step) {
-      let newStep = App.vue.activeStep + step;
-      App.vue.activeStep = newStep;
-      App.vue.activeNav=this.processes[newStep].navs[0].id;
+    goStep: function(index) {
+      App.vue.activeStep = index;
+      App.vue.activeNav=this.steps[index].navs[0].id;
     }
   }
 

@@ -1,14 +1,13 @@
 Vue.component('step-nav', {
 
-  props: ['activeStep', 'processes', 'activeNav', ],
+  props: ['activeStep', 'steps', 'activeNav', ],
 
   template:
-    `<div>
-      <ul class="nav nav-pills">
-        <li 
+    `<div class="m-1">
+      <ul class="nav nav-pills nav-fill" >
+        <li
             v-for='navItem in navInfos' 
-
-            class="nav-item" >
+            class="nav-item p-1" >
           <a class="nav-link" 
             v-bind:class="{ active: (activeNav === navItem.id) }" 
             href="#"
@@ -21,7 +20,7 @@ Vue.component('step-nav', {
 
   computed: {
     navInfos:  function () {
-      return this.processes[this.activeStep].navs;
+      return this.steps[this.activeStep].navs;
     },
   },
 
