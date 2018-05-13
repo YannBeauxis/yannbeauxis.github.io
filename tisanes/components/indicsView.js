@@ -106,9 +106,15 @@ Vue.component('indic-drug-item', {
 Vue.component('indic-thq', {
   props: ['indicId', 'indics'],
   template: `
-      <div class="badge indic-ther m-1 p-1" :class="classObject">
-            {{libelle}}
+      <div class="col-sm-6" >
+        <div class="badge indic-ther w-100 text-truncate" :class="classObject" data-toggle="tooltip" data-placement="top" :title="libelle">
+              {{libelle}}
+        </div>
       </div>`,
+  mounted: function() {
+    $(this.$el).tooltip();
+$('[data-toggle="tooltip"]').tooltip();
+  },
   computed: {
     indic() {
       return this.indics[this.indicId];
@@ -118,7 +124,8 @@ Vue.component('indic-thq', {
       if (this.indic.disabled) {
         badge = "secondary";
       } else if (this.indic.selected) {
-        badge = "warning";
+        //badge = "warning";
+        badge = "info";
       }
       return "badge-" + badge;
     },

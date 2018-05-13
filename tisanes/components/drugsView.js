@@ -45,30 +45,38 @@ Vue.component('selected-drug', {
 Vue.component('drug-row', {
   props: ['drugId', 'indicType', 'context'],
   template: `
-    <li class="list-group-item" :class="classObject" v-show="toShow">
-        <div>
-          <drug--name-common :drug="drug"/> 
-          &nbsp <drug--name-sc :drug="drug" />
-        </div>
-        <div>
-          <indic-thq
-          v-for="indicId in drug.indications.therapeutic"
-                :indicId="indicId"
-                :indics="indics"
-                :key="indicId" />
-        </div>
-        <div>
-          <template v-if="!drug.selected">
-            <button @click="toggleSelect(indicType)" class="btn btn-info btn-sm float-right">
-              Ajouter
+    <li class="list-group-item drug-row" :class="classObject" v-show="toShow">
+        <div class="d-flex">
+          <div class="mr-auto drug-row-padding">
+            <drug--name-common :drug="drug" /> 
+
+            <button class="btn btn-sm btn-info btn-circle" type="button" data-toggle="collapse" 
+              :data-target="'.' + drugInfoId" aria-expanded="false" aria-controls="collapseExample">
+              i
             </button> 
-          </template>
-          <template v-if="drug.selected">
-            <button @click="toggleSelect(indicType)" class="btn btn-danger btn-sm float-right">
-              retirer
+         </div>
+            <button type="button" @click="toggleSelect(indicType)" :class="btnInfo.class">
+              {{btnInfo.libelle}}
             </button> 
-          </template>
+
         </div>
+        <div class="collapse drug-row-padding" :class="drugInfoId">
+          <div>
+            <drug--name-sc :drug="drug" />
+          </div>
+          <div class="container">
+            <div class="row">
+              <indic-thq
+                v-for="indicId in drug.indications.therapeutic"
+                      :indicId="indicId"
+                      :indics="indics"
+                      :key="indicId" />
+            </div>
+          </div>
+        </div>
+        <div>
+        </div>
+
     </li>
   `,
 
@@ -101,6 +109,22 @@ Vue.component('drug-row', {
       } else if (this.context === 'selected') {
         return this.drug.selected;
       }
+    },
+    drugInfoId: function() {
+      
+      return 'drug-info-' + this.drug.selected + '-' + this.drug.id;
+    },
+    btnInfo: function() {
+      let cl = "btn ";
+      let libelle = "";
+      if (this.drug.selected) { 
+        cl += "btn-danger";
+        libelle = "-";
+      } else { 
+        cl +="btn-success";
+        libelle = "+";
+      };
+      return {class: cl, libelle: libelle} ;
     },
   },
 
@@ -135,7 +159,7 @@ Vue.component('drug--name-common', {
 Vue.component('drug--name-sc', {
   props: ['drug'],
   template: `
-      <small><i class="float-right">
+      <small><i>
           <a target="_blank" :href="gbifUrl">  {{nameScEval}} </a>
       </i></small>`,
   computed: {

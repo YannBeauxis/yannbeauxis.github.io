@@ -11,25 +11,16 @@ App.vue = new Vue({
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav">
-                <li class="nav-item" :class="{ active: activeNav === 'drugs-view'}">
-                  <a class="nav-link" href="#" @click="activeNav = 'drugs-view'">Vue par plante</a>
-                </li>
-                <li class="nav-item" :class="{ active: activeNav === 'indics-view'}">
-                  <a class="nav-link" href="#" @click="activeNav = 'indics-view'">Vue par indication</a>
-                </li>
-              </ul>
-            </div>
-        </nav>
         <process-step
           :activeStep='activeStep'
           :steps='steps'
         />
+
+        </nav>
+
       </div>
       <div id="content">
-        <button type="button" class="btn btn-warning btn-circle btn-lg toggle-view" @click="toggleView()"><i class="glyphicon glyphicon-ok"></i></button>
+        <button type="button" class="btn btn-warning btn-circle btn-lg toggle-view" @click="toggleView()">{{selectedTotalCount}}</button>
         <div class="row controlled-height">
           <div class="col-lg-6 controlled-height drug-selection">
             <div class="flex-column controlled-height">

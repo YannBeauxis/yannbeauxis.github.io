@@ -112,6 +112,13 @@ html, body {
   }
 }
 
+.list-group-item.drug-row {
+  padding: 0 0 0 20px;
+}
+
+.drug-row-padding {
+  padding: 6px 6px 6px 0px;
+}
 
 .btn-circle {
   width: 30px;
