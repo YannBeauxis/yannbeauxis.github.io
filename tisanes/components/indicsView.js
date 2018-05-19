@@ -11,6 +11,7 @@ Vue.component('indics-view', {
           :key="indic.id">
         </indic-row> 
       </ul>
+      <div class="dummy-row"></div>
     </div>`,
   computed: {
     assoIndicDrug() {
