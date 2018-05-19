@@ -74,15 +74,16 @@ Vue.component('indic-drug-item', {
 
   computed: {
     classObject() {
+      let disabled = this.drug.disabled || !this.drug.hasTherapeutic;
       let badgeType = 'success';
       if (this.drug.selected) {
         badgeType = 'warning';
-      } else if (this.drug.disabled) {
+      } else if (disabled) {
         badgeType = 'secondary';
       }
       badgeType = "badge-" + badgeType
       //return "badge badge-" + badgeType + " p-1 m-1 indic-drug-badge";
-      res = {disabled: this.drug.disabled};
+      res = {disabled: disabled};
       res[badgeType] = true;
       return res;
     },

@@ -57,7 +57,7 @@ Vue.component('drug-row', {
             <drug--name-common :drug="drug" /> 
          </div>
             <button type="button" @click="toggleSelect(indicType)" :class="btnInfo.class">
-              {{btnInfo.libelle}}
+              <b>{{btnInfo.libelle}}</b>
             </button> 
 
         </div>

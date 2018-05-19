@@ -78,7 +78,7 @@ App.vue = new Vue({
        {
         libelle: 'Principes actifs',
         navs: [
-          {id:'drugs', libelle: 'Drogue végétale'},
+          {id:'drugs', libelle: 'Drogues végétales'},
           {id:'indics', libelle:'Indications'},
         ],
       },
@@ -200,7 +200,8 @@ App.vue = new Vue({
               indic.drugNotSelectNum += direction;
           }
           indic.selected = indic.drugSelectNum > 0 && indic.drugNotSelectNum == 0;
-          indic.disabled = indic.drugNotSelectNum > 0;
+          indic.disabled = (indic.drugNotSelectNum > 0) || 
+            ( !indic.selected && (App.vue.selectedDrugs['thérapeutique'].length >= App.vue.numIndicMax['thérapeutique']));
         });
       }
 
