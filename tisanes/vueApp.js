@@ -115,7 +115,8 @@ App.vue = new Vue({
     App.loadJSON('data/drugs.json', function(response) {
       let drugs = JSON.parse(response);
       let drugsListByName = Object.values(drugs).sort(function (a, b) {
-                  return a.name_fr > b.name_fr;}); 
+          return App.compareString(a.name_fr,b.name_fr);
+      }); 
       Object.keys(drugs).map( function (key, index) {
         drugs[key].selected = false;
         drugs[key].disabled = false;

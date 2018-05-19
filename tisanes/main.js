@@ -34,6 +34,11 @@ App = {
   capitalizeFirst: function(string) {
     return string.substr(0,1).toUpperCase()+string.substr(1);},
 
+  compareString: function(a,b) {
+      return a.normalize('NFD').replace(/[\u0300-\u036f]/g, "") 
+      > b.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  },
+
   vueComponents: {},
 
 }

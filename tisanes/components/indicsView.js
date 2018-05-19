@@ -57,7 +57,9 @@ Vue.component('indic-row', {
       }
     },
     assoDrugs:  function () {
-      return this.assoIndicDrug[this.indic.id];
+      return this.assoIndicDrug[this.indic.id].sort(function (a, b) {
+          return App.compareString(App.vue.drugs[a].name_fr,App.vue.drugs[b].name_fr);
+      });
     },
   }
 
