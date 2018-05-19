@@ -42,11 +42,15 @@ Vue.component('indic-row', {
           </div>
           <template v-if="indic.association.length > 0 ">
               <div><i>associations possibles :</i></div>
+          <div class="container">
+            <div class="row">
               <indic-thq
                     v-for="indicId in indic.association"
                     :indicId="indicId"
                     :indics="indics"
                     :key="indicId" />
+            </div>
+          </div>
           </template>
         </li>`,
   computed: {
