@@ -149,7 +149,7 @@ html, body {
 }
 
 .content-to-load {
-  display: none;
+  /*display: none;*/
 }
 
 .loader {
@@ -170,4 +170,8 @@ html, body {
     margin: 4px;
     font-weight: bold;
     text-transform: capitalize;
+}
+
+.to-hide {
+  display: none;
 }

@@ -23,34 +23,32 @@ App.vue = new Vue({
         <button type="button" class="btn btn-warning btn-circle btn-lg toggle-view" @click="toggleView()">{{selectedTotalCount}}</button>
         <div class="row controlled-height">
           <div class="col-lg-6 controlled-height drug-selection drug-panel">
-            <div class="flex-column controlled-height">
               <div class="content-loader m-5"> 
                 <div class="d-flex justify-content-center"> 
                   <div class="loader"></div> 
                 </div> 
               </div>
-              <div class="content-to-load">
-                <step-nav
-                  :activeNav='activeNav'
-                  :activeStep='activeStep'
-                  :steps='steps'
-                  class="step-nav"
-                />
-                <div class="flex-scroll">
-                  <drugs-view
-                    v-show="activeNav === 'drugs' || activeStep === 1" 
-                    :selectedDrugs="selectedDrugs"
-                    :numIndicMax="numIndicMax"
-                    :drugs-list-by-name="drugsListByName"
-                    :indics="indics"
-                    :indicType="indicType">
-                  </drugs-view>
-                  <indics-view
-                    v-show="activeNav === 'indics'" 
-                    :drugs="drugs"
-                    :indics="indics">
-                  </indics-view>
-                </div>
+            <div class="flex-column content-to-load to-hide controlled-height">
+              <step-nav
+                :activeNav='activeNav'
+                :activeStep='activeStep'
+                :steps='steps'
+                class="step-nav"
+              />
+              <div class="flex-scroll">
+                <drugs-view
+                  v-show="activeNav === 'drugs' || activeStep === 1" 
+                  :selectedDrugs="selectedDrugs"
+                  :numIndicMax="numIndicMax"
+                  :drugs-list-by-name="drugsListByName"
+                  :indics="indics"
+                  :indicType="indicType">
+                </drugs-view>
+                <indics-view
+                  v-show="activeNav === 'indics'" 
+                  :drugs="drugs"
+                  :indics="indics">
+                </indics-view>
               </div>
             </div>
           </div>
@@ -139,7 +137,7 @@ App.vue = new Vue({
         self.drugsListByName = drugsListByName;
         self.indics = indics;
         self.updateDrugs();
-        $('.content-to-load, .content-loader').toggle();
+        $('.content-to-load, .content-loader').toggleClass('to-hide');
       });
     });
 
