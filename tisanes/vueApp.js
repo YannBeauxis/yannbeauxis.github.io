@@ -22,32 +22,39 @@ App.vue = new Vue({
       <div id="content">
         <button type="button" class="btn btn-warning btn-circle btn-lg toggle-view" @click="toggleView()">{{selectedTotalCount}}</button>
         <div class="row controlled-height">
-          <div class="col-lg-6 controlled-height drug-selection">
+          <div class="col-lg-6 controlled-height drug-selection drug-panel">
             <div class="flex-column controlled-height">
-              <step-nav
-                :activeNav='activeNav'
-                :activeStep='activeStep'
-                :steps='steps'
-                class="step-nav"
-              />
-              <div class="flex-scroll">
-                <drugs-view
-                  v-show="activeNav === 'drugs' || activeStep === 1" 
-                  :selectedDrugs="selectedDrugs"
-                  :numIndicMax="numIndicMax"
-                  :drugs-list-by-name="drugsListByName"
-                  :indics="indics"
-                  :indicType="indicType">
-                </drugs-view>
-                <indics-view
-                  v-show="activeNav === 'indics'" 
-                  :drugs="drugs"
-                  :indics="indics">
-                </indics-view>
+              <div class="content-loader m-5"> 
+                <div class="d-flex justify-content-center"> 
+                  <div class="loader"></div> 
+                </div> 
+              </div>
+              <div class="content-to-load">
+                <step-nav
+                  :activeNav='activeNav'
+                  :activeStep='activeStep'
+                  :steps='steps'
+                  class="step-nav"
+                />
+                <div class="flex-scroll">
+                  <drugs-view
+                    v-show="activeNav === 'drugs' || activeStep === 1" 
+                    :selectedDrugs="selectedDrugs"
+                    :numIndicMax="numIndicMax"
+                    :drugs-list-by-name="drugsListByName"
+                    :indics="indics"
+                    :indicType="indicType">
+                  </drugs-view>
+                  <indics-view
+                    v-show="activeNav === 'indics'" 
+                    :drugs="drugs"
+                    :indics="indics">
+                  </indics-view>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 controlled-height drug-selected">
+          <div class="col-lg-6 controlled-height drug-selected drug-panel hide-sm">
             <div class="flex-column controlled-height">
               <h4 class="selection-view text-center w-100">Sélection</h4>
               <div class="list-group flex-scroll">
@@ -114,7 +121,7 @@ App.vue = new Vue({
       Object.keys(drugs).map( function (key, index) {
         drugs[key].selected = false;
         drugs[key].disabled = false;
-        drugs[key].hasTherapeutic = true;
+        drugs[key].hasTherapeutic = false;
         drugs[key].hasOther = {
             aspect: false,
             saveur: false}
@@ -132,6 +139,7 @@ App.vue = new Vue({
         self.drugsListByName = drugsListByName;
         self.indics = indics;
         self.updateDrugs();
+        $('.content-to-load, .content-loader').toggle();
       });
     });
 
@@ -148,8 +156,13 @@ App.vue = new Vue({
   },
 
   methods: {
-    toggleView: function() {
-      $('.drug-selection, .drug-selected').toggle()
+    toggleView: function(init) {
+      if (init) {
+        $('.drug-selection').toggleClass('hide-sm', false);
+        $('.drug-selected').toggleClass('hide-sm', true);
+      } else {
+        $('.drug-selection, .drug-selected').toggleClass('hide-sm');
+      }
     },
     toggleSelect: function(addDrug, drug, indicType) {
       let self = this
@@ -201,7 +214,7 @@ App.vue = new Vue({
       Object.keys(this.drugs).map( function (drugId) {
         let drug = App.vue.drugs[drugId];
         if(self.selectedTotalCount === 0 || drug.selected) {
-          drug.hasTherapeutic =  true;
+          drug.hasTherapeutic =  drug.indications.therapeutic.length > 0;
         } else {
           let indics = App.vue.indics;
           let hasIndic = drug.indications.therapeutic.reduce (

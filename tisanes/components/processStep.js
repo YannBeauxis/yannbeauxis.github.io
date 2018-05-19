@@ -26,6 +26,7 @@ Vue.component('process-step', {
     goStep: function(index) {
       App.vue.activeStep = index;
       App.vue.activeNav=this.steps[index].navs[0].id;
+      App.vue.toggleView(true);
     }
   }
 

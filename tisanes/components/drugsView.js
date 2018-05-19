@@ -9,6 +9,7 @@ Vue.component('drugs-view', {
             :indicType="indicType"
             :key="drug.id" />
         </ul>
+        <div class="dummy-row"></div>
     </div>`,
     computed: {
       indicType: function(){
@@ -28,8 +29,8 @@ Vue.component('drugs-view', {
 Vue.component('selected-drug', {
   props: ['indicType', 'selectedDrugs', 'numIndicMax'],
   template: `
-    <div>
-      <h5>{{indicType}} ({{numIndicMax[indicType]}} max)</h5>
+    <div class='selection-content'>
+      <h5> <span class='selection-title'>{{indicType}}</span> ({{numIndicMax[indicType]}} max)</h5>
         <ul class="list-group">
           <drug-row v-for="drugId in selectedDrugs[indicType]"
             :drugId="drugId" 
@@ -47,13 +48,13 @@ Vue.component('drug-row', {
   template: `
     <li class="list-group-item drug-row" :class="classObject" v-show="toShow">
         <div class="d-flex">
-          <div class="mr-auto drug-row-padding">
-            <drug--name-common :drug="drug" /> 
-
-            <button class="btn btn-sm btn-info btn-circle" type="button" data-toggle="collapse" 
+          <div class="mr-auto drug-row-padding"
+              data-toggle="collapse" 
               :data-target="'.' + drugInfoId" aria-expanded="false" aria-controls="collapseExample">
-              i
+            <button class="btn btn-sm btn-info btn-circle" type="button" >
+              <b>i</b>
             </button> 
+            <drug--name-common :drug="drug" /> 
          </div>
             <button type="button" @click="toggleSelect(indicType)" :class="btnInfo.class">
               {{btnInfo.libelle}}
