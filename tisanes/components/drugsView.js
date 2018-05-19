@@ -38,6 +38,7 @@ Vue.component('selected-drug', {
             :context="'selected'"
             :key="drugId" />
         </ul>
+      <div class="dummy-row"></div>
     </div>
     `,
 
