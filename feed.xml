@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator>
+  <link href="http://pro.yannbeauxis.net/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://pro.yannbeauxis.net/" rel="alternate" type="text/html" />
+  <updated>2018-11-10T03:03:59-06:00</updated>
+  <id>http://pro.yannbeauxis.net/</id>
+
+  
+    <title type="html">Yann Beauxis</title>
+  
+
+  
+    <subtitle>Yann Beauxis developper web page</subtitle>
+  
+
+  
+
+  
+  
+    <entry>
+      <title type="html">Metwork</title>
+      <link href="http://pro.yannbeauxis.net/2018/10/01/metwork/" rel="alternate" type="text/html" title="Metwork" />
+      <published>2018-10-01T00:00:00-05:00</published>
+      <updated>2018-10-01T00:00:00-05:00</updated>
+      <id>http://pro.yannbeauxis.net/2018/10/01/metwork</id>
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/10/01/metwork/">&lt;p&gt;MetWork est une plateforme web open source de calcul en chimie des substances naturelles.&lt;/p&gt;
+
+&lt;p&gt;J’ai développée la solution en Python avec Django et la JSON REST API pour le backend et EmberJS pour le frontend.
+La charge de calcul en chimie analytique est répartie sur 6 serveurs via un système de task management utilisant Celery et RabbitMQ.&lt;/p&gt;
+
+&lt;p&gt;Le projet a fait l’objet d’une
+&lt;a href=&quot;https://doi.org/10.1093/bioinformatics/bty864&quot; target=&quot;_blank&quot;&gt;
+publication dans la revue Bioinformatics
+&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lien vers la plateforme :
+  &lt;a href=&quot;https://metwork.pharmacie.parisdescartes.fr&quot; target=&quot;_blank&quot;&gt;
+  https://metwork.pharmacie.parisdescartes.fr
+  &lt;/a&gt;
+  &lt;br /&gt;
+  Sur GitHub :
+  &lt;a href=&quot;https://github.com/metwork-project&quot; target=&quot;_blank&quot;&gt;
+    https://github.com/metwork-project
+  &lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name></name>
+        
+        
+      </author>
+
+      
+
+      
+
+      
+        <summary type="html">MetWork est une plateforme web open source de calcul en chimie des substances naturelles.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Iris</title>
+      <link href="http://pro.yannbeauxis.net/2016/12/01/iris/" rel="alternate" type="text/html" title="Iris" />
+      <published>2016-12-01T00:00:00-06:00</published>
+      <updated>2016-12-01T00:00:00-06:00</updated>
+      <id>http://pro.yannbeauxis.net/2016/12/01/iris</id>
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2016/12/01/iris/">&lt;p&gt;IRIS est un prototype d’appli web sur la composition de mélange à base d’huiles essentielles.&lt;/p&gt;
+
+&lt;p&gt;Le site a été développé en Ruby on Rails avec un peu de BackboneJS.&lt;/p&gt;
+
+&lt;p&gt;Lien vers le site :
+  &lt;a href=&quot;http://www.projet-iris.com/&quot; target=&quot;_blank&quot;&gt;
+  http://www.projet-iris.com/
+  &lt;/a&gt;
+  &lt;br /&gt;
+  Sur GitHub :
+  &lt;a href=&quot;https://github.com/YannBeauxis/Iris&quot; target=&quot;_blank&quot;&gt;
+    https://github.com/YannBeauxis/Iris
+  &lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name></name>
+        
+        
+      </author>
+
+      
+
+      
+
+      
+        <summary type="html">IRIS est un prototype d’appli web sur la composition de mélange à base d’huiles essentielles.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
