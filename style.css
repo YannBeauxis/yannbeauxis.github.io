@@ -477,3 +477,7 @@ footer .footer-below {
   margin-top: 18px;
   font-style: italic;
 }
+
+.fa.cv {
+  margin-right: 8px;
+}
