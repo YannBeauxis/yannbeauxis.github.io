@@ -24,12 +24,16 @@ p.small {
 }
 
 a,
-a:hover,
 a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #0c2b40;
+    color: #b9823c;
+}
+
+a:hover {
+    outline: 0;
+    color: #80230c;
 }
 
 h1,
@@ -220,7 +224,7 @@ section.success {
     display: block;
     position: relative;
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 350px;
 }
 
 #portfolio .portfolio-item .portfolio-link .caption {
@@ -228,7 +232,7 @@ section.success {
     width: 100%;
     height: 100%;
     opacity: 0;
-    background: rgba(124,140,150,.9);
+    background: rgba(125,157,179,.9);
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
     transition: all ease .5s;
@@ -461,9 +465,23 @@ footer .footer-below {
     transform: rotate(90deg);
 }
 
+.navbar-header>.navbar-brand:focus,
+.nav.navbar-nav>li>a,
+.nav.navbar-nav>li>a:focus {
+    color: white;
+}
+
 .navbar-nav>.active>a {
-    color: #0c2b40 !important;
+    color: #b9823c !important;
     background-color: #237bb6 !important;
+}
+
+.navbar-nav>li>a:hover,
+.navbar-brand:hover,
+.navbar-nav>li>a:active,
+.navbar-brand:active
+ {
+    color: #80230c !important;
 }
 
 /* Fix modal mouse wheel issues */
@@ -480,4 +498,17 @@ footer .footer-below {
 
 .fa.cv {
   margin-right: 8px;
+}
+
+.btn.btn-third {
+  background-color: #b9823c;
+  color: white;
+}
+
+.btn.btn-third:hover {
+  background-color: #80230c;
+}
+
+.text-third {
+  color: #80230c;
 }
