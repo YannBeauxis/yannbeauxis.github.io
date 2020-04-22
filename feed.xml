@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator>
   <link href="http://pro.yannbeauxis.net/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://pro.yannbeauxis.net/" rel="alternate" type="text/html" />
-  <updated>2020-04-13T12:43:29+02:00</updated>
+  <updated>2020-04-22T07:25:51+02:00</updated>
   <id>http://pro.yannbeauxis.net/</id>
 
   
@@ -25,11 +25,8 @@
       <published>2018-11-01T00:00:00+01:00</published>
       <updated>2018-11-01T00:00:00+01:00</updated>
       <id>http://pro.yannbeauxis.net/2018/11/01/softlaw</id>
-      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/softlaw/">&lt;p&gt;La startup en legal tech SoftLaw (&lt;a href=&quot;https://www.softlaw.ai/&quot; target=&quot;_blank&quot;&gt;www.softlaw.ai&lt;/a&gt;)
-propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine learning
-en traitement automatique du langage naturel (NLP).&lt;/p&gt;
-
-&lt;p&gt;Je les accompagne dans le développement de leurs APIs web et la mise en place de leur solution SaaS.&lt;/p&gt;</content>
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/softlaw/">&lt;p&gt;La startup en legaltech &lt;a href=&quot;https://www.softlaw.ai/&quot; target=&quot;_blank&quot;&gt;SoftLaw&lt;/a&gt; propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine/deep learning en traitement automatique du langage naturel (NLP).
+Je les accompagne dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.&lt;/p&gt;</content>
 
       
       
@@ -48,7 +45,41 @@ en traitement automatique du langage naturel (NLP).&lt;/p&gt;
       
 
       
-        <summary type="html">La startup en legal tech SoftLaw (www.softlaw.ai) propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine learning en traitement automatique du langage naturel (NLP).</summary>
+        <summary type="html">La startup en legaltech SoftLaw propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine/deep learning en traitement automatique du langage naturel (NLP). Je les accompagne dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Sonetaa</title>
+      <link href="http://pro.yannbeauxis.net/2018/11/01/sonetaa/" rel="alternate" type="text/html" title="Sonetaa" />
+      <published>2018-11-01T00:00:00+01:00</published>
+      <updated>2018-11-01T00:00:00+01:00</updated>
+      <id>http://pro.yannbeauxis.net/2018/11/01/sonetaa</id>
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/sonetaa/">&lt;p&gt;Participation au projet &lt;a href=&quot;https:/research.pasteur.fr/en/project/sonetaa&quot; target=&quot;_blank&quot;&gt;SoNeTAA&lt;/a&gt; (utilisation des neurosciences sociales pour aider au traitement de
+l’autisme) par l’analyse des données de recherches et la mise au point d’un compte rendu clinique
+automatisé via un serveur web local.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name></name>
+        
+        
+      </author>
+
+      
+
+      
+
+      
+        <summary type="html">Participation au projet SoNeTAA (utilisation des neurosciences sociales pour aider au traitement de l’autisme) par l’analyse des données de recherches et la mise au point d’un compte rendu clinique automatisé via un serveur web local.</summary>
       
 
       
