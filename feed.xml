@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator>
   <link href="http://pro.yannbeauxis.net/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://pro.yannbeauxis.net/" rel="alternate" type="text/html" />
-  <updated>2020-04-22T07:25:51+02:00</updated>
+  <updated>2021-03-12T11:55:49+01:00</updated>
   <id>http://pro.yannbeauxis.net/</id>
 
   
@@ -26,7 +26,7 @@
       <updated>2018-11-01T00:00:00+01:00</updated>
       <id>http://pro.yannbeauxis.net/2018/11/01/softlaw</id>
       <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/softlaw/">&lt;p&gt;La startup en legaltech &lt;a href=&quot;https://www.softlaw.ai/&quot; target=&quot;_blank&quot;&gt;SoftLaw&lt;/a&gt; propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine/deep learning en traitement automatique du langage naturel (NLP).
-Je les accompagne dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.&lt;/p&gt;</content>
+Je les ai accompagné dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.&lt;/p&gt;</content>
 
       
       
@@ -45,7 +45,7 @@ Je les accompagne dans le développement et l’amélioration continue de leurs 
       
 
       
-        <summary type="html">La startup en legaltech SoftLaw propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine/deep learning en traitement automatique du langage naturel (NLP). Je les accompagne dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.</summary>
+        <summary type="html">La startup en legaltech SoftLaw propose une solution de gestion et d’analyse des contrats intégrant des technologies de machine/deep learning en traitement automatique du langage naturel (NLP). Je les ai accompagné dans le développement et l’amélioration continue de leurs APIs web et de leur solution SaaS.</summary>
       
 
       
@@ -58,9 +58,9 @@ Je les accompagne dans le développement et l’amélioration continue de leurs 
       <published>2018-11-01T00:00:00+01:00</published>
       <updated>2018-11-01T00:00:00+01:00</updated>
       <id>http://pro.yannbeauxis.net/2018/11/01/sonetaa</id>
-      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/sonetaa/">&lt;p&gt;Participation au projet &lt;a href=&quot;https:/research.pasteur.fr/en/project/sonetaa&quot; target=&quot;_blank&quot;&gt;SoNeTAA&lt;/a&gt; (utilisation des neurosciences sociales pour aider au traitement de
-l’autisme) par l’analyse des données de recherches et la mise au point d’un compte rendu clinique
-automatisé via un serveur web local.&lt;/p&gt;</content>
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/11/01/sonetaa/">&lt;p&gt;Projet &lt;a href=&quot;https:/research.pasteur.fr/en/project/sonetaa&quot; target=&quot;_blank&quot;&gt;SoNeTAA&lt;/a&gt; : utilisation des neurosciences sociales appliquée au traitement de l’autisme.&lt;/p&gt;
+
+&lt;p&gt;J’ai développé une application web d’automatisation de traitement des données d’imagerie cérébrale qui génère un rapport de recherche pour les participants à l’étude scientifique. Cette application est déployée à l’Hopitâl Robert Debré sur une architecture Docker locale.&lt;/p&gt;</content>
 
       
       
@@ -79,7 +79,7 @@ automatisé via un serveur web local.&lt;/p&gt;</content>
       
 
       
-        <summary type="html">Participation au projet SoNeTAA (utilisation des neurosciences sociales pour aider au traitement de l’autisme) par l’analyse des données de recherches et la mise au point d’un compte rendu clinique automatisé via un serveur web local.</summary>
+        <summary type="html">Projet SoNeTAA : utilisation des neurosciences sociales appliquée au traitement de l’autisme.</summary>
       
 
       
@@ -92,9 +92,9 @@ automatisé via un serveur web local.&lt;/p&gt;</content>
       <published>2018-10-01T00:00:00+02:00</published>
       <updated>2018-10-01T00:00:00+02:00</updated>
       <id>http://pro.yannbeauxis.net/2018/10/01/metwork</id>
-      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/10/01/metwork/">&lt;p&gt;MetWork est une plateforme web open source de calcul en chimie des substances naturelles.&lt;/p&gt;
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/10/01/metwork/">&lt;p&gt;MetWork est une plateforme web open source de calcul en chimie analytique.&lt;/p&gt;
 
-&lt;p&gt;J’ai développé la solution en Python avec Django et la JSON REST API pour le backend et EmberJS pour le frontend.
+&lt;p&gt;Je développe la solution en Python avec Django pour le backend et EmberJS pour le frontend.
 La charge de calcul en chimie analytique est répartie sur 6 serveurs via un système de task management utilisant Celery et RabbitMQ.&lt;/p&gt;
 
 &lt;p&gt;Le projet a fait l’objet d’une
@@ -103,8 +103,8 @@ publication dans la revue Bioinformatics
 &lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Lien vers la plateforme :
-  &lt;a href=&quot;https://metwork.pharmacie.parisdescartes.fr&quot; target=&quot;_blank&quot;&gt;
-  https://metwork.pharmacie.parisdescartes.fr
+  &lt;a href=&quot;https://metwork.science&quot; target=&quot;_blank&quot;&gt;
+  https://metwork.science
   &lt;/a&gt;
   &lt;br /&gt;
   Sur GitHub :
@@ -129,51 +129,7 @@ publication dans la revue Bioinformatics
       
 
       
-        <summary type="html">MetWork est une plateforme web open source de calcul en chimie des substances naturelles.</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry>
-      <title type="html">Iris</title>
-      <link href="http://pro.yannbeauxis.net/2016/12/01/iris/" rel="alternate" type="text/html" title="Iris" />
-      <published>2016-12-01T00:00:00+01:00</published>
-      <updated>2016-12-01T00:00:00+01:00</updated>
-      <id>http://pro.yannbeauxis.net/2016/12/01/iris</id>
-      <content type="html" xml:base="http://pro.yannbeauxis.net/2016/12/01/iris/">&lt;p&gt;IRIS est un prototype d’appli web sur la composition de mélange à base d’huiles essentielles.&lt;/p&gt;
-
-&lt;p&gt;Le site a été développé en Ruby on Rails avec un peu de BackboneJS.&lt;/p&gt;
-
-&lt;p&gt;Lien vers le site :
-  &lt;a href=&quot;http://www.projet-iris.com/&quot; target=&quot;_blank&quot;&gt;
-  http://www.projet-iris.com/
-  &lt;/a&gt;
-  &lt;br /&gt;
-  Sur GitHub :
-  &lt;a href=&quot;https://github.com/YannBeauxis/Iris&quot; target=&quot;_blank&quot;&gt;
-    https://github.com/YannBeauxis/Iris
-  &lt;/a&gt;&lt;/p&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name></name>
-        
-        
-      </author>
-
-      
-
-      
-
-      
-        <summary type="html">IRIS est un prototype d’appli web sur la composition de mélange à base d’huiles essentielles.</summary>
+        <summary type="html">MetWork est une plateforme web open source de calcul en chimie analytique.</summary>
       
 
       
