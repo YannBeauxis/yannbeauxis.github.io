@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <feed xmlns="http://www.w3.org/2005/Atom" >
-  <generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator>
+  <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
   <link href="http://pro.yannbeauxis.net/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://pro.yannbeauxis.net/" rel="alternate" type="text/html" />
-  <updated>2021-03-12T11:55:49+01:00</updated>
+  <updated>2021-03-17T14:52:17+01:00</updated>
   <id>http://pro.yannbeauxis.net/</id>
 
   
@@ -92,9 +92,9 @@ Je les ai accompagné dans le développement et l’amélioration continue de le
       <published>2018-10-01T00:00:00+02:00</published>
       <updated>2018-10-01T00:00:00+02:00</updated>
       <id>http://pro.yannbeauxis.net/2018/10/01/metwork</id>
-      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/10/01/metwork/">&lt;p&gt;MetWork est une plateforme web open source de calcul en chimie analytique.&lt;/p&gt;
+      <content type="html" xml:base="http://pro.yannbeauxis.net/2018/10/01/metwork/">&lt;p&gt;MetWork est une application web open source de calcul en chimie analytique.&lt;/p&gt;
 
-&lt;p&gt;Je développe la solution en Python avec Django pour le backend et EmberJS pour le frontend.
+&lt;p&gt;J’ai développé la solution en Python avec Django pour le backend et EmberJS pour le frontend.
 La charge de calcul en chimie analytique est répartie sur 6 serveurs via un système de task management utilisant Celery et RabbitMQ.&lt;/p&gt;
 
 &lt;p&gt;Le projet a fait l’objet d’une
@@ -102,7 +102,7 @@ La charge de calcul en chimie analytique est répartie sur 6 serveurs via un sys
 publication dans la revue Bioinformatics
 &lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Lien vers la plateforme :
+&lt;p&gt;Lien vers l’application :
   &lt;a href=&quot;https://metwork.science&quot; target=&quot;_blank&quot;&gt;
   https://metwork.science
   &lt;/a&gt;
@@ -110,7 +110,9 @@ publication dans la revue Bioinformatics
   Sur GitHub :
   &lt;a href=&quot;https://github.com/metwork-project&quot; target=&quot;_blank&quot;&gt;
     https://github.com/metwork-project
-  &lt;/a&gt;&lt;/p&gt;</content>
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT : J’ai commencé une refonte complète de l’application sur une architecture en micro-services Docker/Kubernetes, des API basé sur FastAPI et un frontend en Vue.js.&lt;/p&gt;</content>
 
       
       
@@ -129,7 +131,7 @@ publication dans la revue Bioinformatics
       
 
       
-        <summary type="html">MetWork est une plateforme web open source de calcul en chimie analytique.</summary>
+        <summary type="html">MetWork est une application web open source de calcul en chimie analytique.</summary>
       
 
       
