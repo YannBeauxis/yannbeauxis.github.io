@@ -512,11 +512,3 @@ footer .footer-below {
 .text-third {
   color: #80230c;
 }
-
-.fa-gitlab {
-    height: 20px;
-    content: url("/img/gitlab.svg");
-    color: white;
-    position: relative;
-    top: 3px;
-}
