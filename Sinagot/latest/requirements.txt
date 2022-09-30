@@ -18,7 +18,7 @@ immutables==0.14
 importlib-metadata==2.0.0; python_version < "3.8"
 isort==5.6.4
 jinja2==2.11.2
-joblib==0.17.0
+joblib==1.2.0
 json-lines==0.5.0
 json-log-formatter==0.3.0
 lazy-object-proxy==1.4.3
